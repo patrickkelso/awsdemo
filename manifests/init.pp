@@ -15,7 +15,7 @@ class awsdemo (
   $vpc_mask    = '10.90.0.0',
   $zone_a_mask = '10.90.10.0',
   $zone_b_mask = '10.90.20.0',
-  $zone_c_mask = '10.90.30.0',
+#  $zone_c_mask = '10.90.30.0',
   $image_ids = $awsdemo::params::image_ids,
 ) inherits awsdemo::params {
   $pe_admin_password = fqdn_rand_string(32, '', "${created_by}${project}${department}${pe_build}")
@@ -29,7 +29,7 @@ class awsdemo (
     vpc_mask    => $vpc_mask,
     zone_a_mask => $zone_a_mask,
     zone_b_mask => $zone_b_mask,
-    zone_c_mask => $zone_c_mask,
+#    zone_c_mask => $zone_c_mask,
     created_by  => $created_by,
   }
   awsdemo::pe_node { "${project}-${department}-${created_by}-master":

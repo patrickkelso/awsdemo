@@ -11,7 +11,7 @@ define awsdemo::vpc (
   $vpc_mask    = '10.90.0.0',
   $zone_a_mask = '10.90.10.0',
   $zone_b_mask = '10.90.20.0',
-  $zone_c_mask = '10.90.30.0',
+#  $zone_c_mask = '10.90.30.0',
 ) {
   $vpc_name             = "${name}-vpc"
   $igw_name             = "${name}-igw"
@@ -60,20 +60,20 @@ define awsdemo::vpc (
     ],
     tags                    => $aws_tags,
   }
-  ec2_vpc_subnet { "${name}-avzc":
-    ensure                  => present,
-    region                  => $region,
-    vpc                     => $vpc_name,
-    cidr_block              => "${zone_c_mask}/24",
-    availability_zone       => "${region}c",
-    route_table             => $routes_name,
-    map_public_ip_on_launch => true,
-    require                 => [
-      Ec2_vpc[$vpc_name],
-      Ec2_vpc_routetable[$routes_name],
-    ],
-    tags                    => $aws_tags,
-  }
+#  ec2_vpc_subnet { "${name}-avzc":
+#    ensure                  => present,
+#    region                  => $region,
+#    vpc                     => $vpc_name,
+#    cidr_block              => "${zone_c_mask}/24",
+#    availability_zone       => "${region}c",
+#    route_table             => $routes_name,
+#    map_public_ip_on_launch => true,
+#    require                 => [
+#      Ec2_vpc[$vpc_name],
+#      Ec2_vpc_routetable[$routes_name],
+#    ],
+#    tags                    => $aws_tags,
+#  }
 
   ec2_vpc_internet_gateway { $igw_name:
     ensure  => present,
